@@ -11,15 +11,15 @@ body {
   color: #333;
   background: white;
   min-height: 100vh;
-  padding: 2rem;
-  padding-top: 120px; /* Add space for fixed navbar */
+  padding-top: 120px; /* Space for fixed navbar */
+  margin: 0;
 }
 
 .site-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 80px;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 120px);
 }
 
 /* Navigation Styles - Updated for sticky behavior */
@@ -39,15 +39,6 @@ body {
   border-bottom: 1px solid rgba(229, 231, 235, 0.3);
 }
 
-.nav-container .site-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 80px;
-}
 
 .nav-logo {
   font-size: 1.5rem;
