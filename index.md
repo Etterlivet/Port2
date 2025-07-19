@@ -1,4 +1,4 @@
 ---
 layout: projects
-title: Amanda Pinsker - Portfolio
+title: Ama  - Portfolio
 ---
