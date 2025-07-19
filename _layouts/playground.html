@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<div class="projects">
+  <div class="projects-title">
+    <h1>{{ page.title }}</h1>
+  </div>
+
+  <div class="projects-list">
+    {% for experiment in site.data.playground %}
+    <div class="project-item" onclick="scrollToProject('experiment{{ forloop.index }}')">
+      <div class="project-content">
+        <div class="project-title">{{ experiment.title }}</div>
+        <div class="project-category">{{ experiment.category }}</div>
+      </div>
+      <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Experiment Detail Pages -->
+{% for experiment in site.data.playground %}
+<div id="experiment{{ forloop.index }}" class="project-page">
+  <div class="project-header">
+    <div class="project-number">Experiment {{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+    <h2 class="project-main-title">{{ experiment.title }}</h2>
+    <p class="project-description">{{ experiment.description }}</p>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <div class="project-meta-label">Type</div>
+        <div class="project-meta-value">{{ experiment.client }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Year</div>
+        <div class="project-meta-value">{{ experiment.year }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Role</div>
+        <div class="project-meta-value">{{ experiment.role }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="project-image-placeholder">
+    Experiment Demo & Code Coming Soon
+  </div>
+</div>
+{% endfor %}
