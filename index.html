@@ -4,41 +4,718 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amanda Pinsker - Portfolio</title>
-  <meta http-equiv="refresh" content="0; url=./projects.html">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      line-height: 1.6;
+      color: #333;
       background: white;
+      min-height: 100vh;
+      padding-top: 120px;
+    }
+
+    .site-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 80px;
+      min-height: calc(100vh - 120px);
+    }
+
+    /* Navigation */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 80px;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: #6b7280;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
       color: #333;
     }
-    .loading {
-      text-align: center;
+
+    /* Projects Layout */
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
     }
-    .spinner {
-      border: 2px solid #f3f3f3;
-      border-top: 2px solid #333;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1rem;
+
+    .projects-title {
+      position: sticky;
+      top: 140px;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+
+    .projects-title h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .projects-list {
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1.5rem 0;
+    }
+
+    .project-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .project-item:first-child {
+      padding-top: 0;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+    }
+
+    .project-item:hover {
+      color: #2563eb;
+    }
+
+    .project-content {
+      flex: 1;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+    }
+
+    .project-category {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: #6b7280;
+      background: rgba(107, 114, 128, 0.1);
+      border: 1px solid rgba(107, 114, 128, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .down-arrow {
+      width: 16px;
+      height: 16px;
+      color: #9ca3af;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .project-item:hover .down-arrow {
+      color: #2563eb;
+      transform: translateY(3px);
+    }
+
+    .project-item:hover .project-category {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(37, 99, 235, 0.2);
+      color: #2563eb;
+    }
+
+    /* Project Detail Pages */
+    .project-page {
+      margin-top: 4rem;
+      padding: 4rem 0;
+      border-top: 2px solid #e5e7eb;
+      min-height: 100vh;
+      display: none;
+    }
+
+    .project-page.active {
+      display: block;
+    }
+
+    .project-header {
+      margin-bottom: 2rem;
+    }
+
+    .project-number {
+      font-size: 1rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-main-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .project-description {
+      font-size: 1.125rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .project-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-meta-label {
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-meta-value {
+      font-size: 1rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .project-image-placeholder {
+      width: 100%;
+      height: 400px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Pages */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 100px;
+      }
+
+      .site-container {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .projects-title {
+        position: static;
+      }
+
+      .projects-title h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.25rem 0;
+      }
+
+      .project-content {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .down-arrow {
+        align-self: flex-end;
+        margin-left: 0;
+      }
+
+      .project-main-title {
+        font-size: 2rem;
+      }
+
+      .project-meta {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="loading">
-    <div class="spinner"></div>
-    <p>Loading portfolio...</p>
-    <p><a href="./projects.html">Click here if not redirected</a></p>
+  <nav class="nav-container">
+    <a href="#" class="nav-logo">Amanda Pinsker</a>
+    <div class="nav-links">
+      <a onclick="showPage('projects')" class="nav-link active" id="projects-nav">Projects</a>
+      <a onclick="showPage('playground')" class="nav-link" id="playground-nav">Playground</a>
+      <a onclick="scrollToProject('about-section')" class="nav-link">About</a>
+    </div>
+  </nav>
+
+  <div class="site-container">
+    <!-- Projects Page -->
+    <div id="projects" class="page active">
+      <div class="projects">
+        <div class="projects-title">
+          <h1>Projects</h1>
+        </div>
+
+        <div class="projects-list">
+          <div class="project-item" onclick="scrollToProject('project1')">
+            <div class="project-content">
+              <div class="project-title">E-commerce Platform Redesign</div>
+              <div class="project-category">WEB DESIGN</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('project2')">
+            <div class="project-content">
+              <div class="project-title">Mobile App Interface - FinTech</div>
+              <div class="project-category">UI/UX DESIGN</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('project3')">
+            <div class="project-content">
+              <div class="project-title">Brand Identity & Website</div>
+              <div class="project-category">BRANDING</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('project4')">
+            <div class="project-content">
+              <div class="project-title">Dashboard Analytics Tool</div>
+              <div class="project-category">DATA VISUALIZATION</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('about-section')">
+            <div class="project-content">
+              <div class="project-title">About</div>
+              <div class="project-category">PERSONAL</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Details -->
+      <div id="project1" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Project 01</div>
+          <h2 class="project-main-title">E-commerce Platform Redesign</h2>
+          <p class="project-description">Complete redesign of a major e-commerce platform focusing on user experience, conversion optimization, and mobile-first approach. The project involved extensive user research, A/B testing, and iterative design improvements.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Client</div>
+              <div class="project-meta-value">RetailCorp Inc.</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2023</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Lead Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Project Images & Details Coming Soon
+        </div>
+      </div>
+
+      <div id="project2" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Project 02</div>
+          <h2 class="project-main-title">Mobile App Interface - FinTech</h2>
+          <p class="project-description">Design and development of a comprehensive mobile banking application with focus on security, accessibility, and intuitive financial management tools. Created design system and prototypes for iOS and Android platforms.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Client</div>
+              <div class="project-meta-value">SecureBank</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2023</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">UX/UI Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Project Images & Details Coming Soon
+        </div>
+      </div>
+
+      <div id="project3" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Project 03</div>
+          <h2 class="project-main-title">Brand Identity & Website</h2>
+          <p class="project-description">Complete brand identity creation including logo design, color palette, typography system, and responsive website development. The project encompassed brand strategy, visual identity, and digital presence.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Client</div>
+              <div class="project-meta-value">GreenTech Solutions</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2022</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Brand Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Project Images & Details Coming Soon
+        </div>
+      </div>
+
+      <div id="project4" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Project 04</div>
+          <h2 class="project-main-title">Dashboard Analytics Tool</h2>
+          <p class="project-description">Design of a comprehensive data visualization dashboard for business intelligence and analytics. Focused on making complex data accessible and actionable through intuitive interface design and clear information hierarchy.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Client</div>
+              <div class="project-meta-value">DataViz Pro</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2022</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Product Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Project Images & Details Coming Soon
+        </div>
+      </div>
+
+      <div id="about-section" class="project-page">
+        <div class="project-header">
+          <div class="project-number">About</div>
+          <h2 class="project-main-title">Amanda Pinsker</h2>
+          <p class="project-description">Creative designer and developer with passion for creating meaningful digital experiences. I specialize in user interface design, user experience research, and front-end development, with a focus on creating accessible and inclusive digital products.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Location</div>
+              <div class="project-meta-value">New York, NY</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Experience</div>
+              <div class="project-meta-value">5+ Years</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Focus</div>
+              <div class="project-meta-value">UI/UX Design</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          I believe in the power of design to solve complex problems and create positive change. My approach combines user research, data-driven insights, and creative problem-solving to deliver exceptional digital experiences.
+        </div>
+      </div>
+    </div>
+
+    <!-- Playground Page -->
+    <div id="playground" class="page">
+      <div class="projects">
+        <div class="projects-title">
+          <h1>Playground</h1>
+        </div>
+
+        <div class="projects-list">
+          <div class="project-item" onclick="scrollToProject('experiment1')">
+            <div class="project-content">
+              <div class="project-title">Interactive CSS Animations</div>
+              <div class="project-category">EXPERIMENT</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('experiment2')">
+            <div class="project-content">
+              <div class="project-title">Generative Art with Code</div>
+              <div class="project-category">CREATIVE CODING</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('experiment3')">
+            <div class="project-content">
+              <div class="project-title">Typography Experiments</div>
+              <div class="project-category">TYPOGRAPHY</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+
+          <div class="project-item" onclick="scrollToProject('experiment4')">
+            <div class="project-content">
+              <div class="project-title">3D Web Interfaces</div>
+              <div class="project-category">3D DESIGN</div>
+            </div>
+            <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experiment Details -->
+      <div id="experiment1" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Experiment 01</div>
+          <h2 class="project-main-title">Interactive CSS Animations</h2>
+          <p class="project-description">Exploring advanced CSS animations and micro-interactions. A collection of experimental interface elements that push the boundaries of what's possible with pure CSS.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Personal Project</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2024</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Developer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Experiment Demo & Code Coming Soon
+        </div>
+      </div>
+
+      <div id="experiment2" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Experiment 02</div>
+          <h2 class="project-main-title">Generative Art with Code</h2>
+          <p class="project-description">Using JavaScript and Canvas API to create dynamic, generative art pieces. Exploring the intersection of mathematics, code, and visual design.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Personal Project</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2024</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Creative Coder</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Experiment Demo & Code Coming Soon
+        </div>
+      </div>
+
+      <div id="experiment3" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Experiment 03</div>
+          <h2 class="project-main-title">Typography Experiments</h2>
+          <p class="project-description">Experimental typography layouts and variable font implementations. Pushing the boundaries of web typography with modern CSS features.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Personal Project</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2023</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">Type Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Experiment Demo & Code Coming Soon
+        </div>
+      </div>
+
+      <div id="experiment4" class="project-page">
+        <div class="project-header">
+          <div class="project-number">Experiment 04</div>
+          <h2 class="project-main-title">3D Web Interfaces</h2>
+          <p class="project-description">Exploring Three.js and WebGL to create immersive 3D web experiences. Experimenting with spatial design in browser environments.</p>
+          <div class="project-meta">
+            <div class="project-meta-item">
+              <div class="project-meta-label">Type</div>
+              <div class="project-meta-value">Personal Project</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Year</div>
+              <div class="project-meta-value">2023</div>
+            </div>
+            <div class="project-meta-item">
+              <div class="project-meta-label">Role</div>
+              <div class="project-meta-value">3D Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-image-placeholder">
+          Experiment Demo & Code Coming Soon
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function scrollToProject(projectId) {
+      const element = document.getElementById(projectId);
+      if (element) {
+        // Show the element first
+        element.classList.add('active');
+        
+        // Account for fixed navbar height
+        const navHeight = 120;
+        const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: elementTop,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    function showPage(pageName) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // Hide all project pages
+      const projectPages = document.querySelectorAll('.project-page');
+      projectPages.forEach(page => page.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(pageName).classList.add('active');
+      
+      // Update navigation
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => link.classList.remove('active'));
+      document.getElementById(pageName + '-nav').classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Handle hash changes for direct navigation
+    window.addEventListener('load', function() {
+      if (window.location.hash) {
+        setTimeout(function() {
+          const elementId = window.location.hash.substring(1);
+          scrollToProject(elementId);
+        }, 500);
+      }
+    });
+  </script>
 </body>
 </html>
