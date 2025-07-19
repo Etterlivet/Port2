@@ -1,0 +1,351 @@
+/* Copy the entire CSS from your original file here, plus these additions for sticky navbar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: white;
+  min-height: 100vh;
+  padding: 2rem;
+  padding-top: 120px; /* Add space for fixed navbar */
+}
+
+.site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 80px;
+  min-height: calc(100vh - 4rem);
+}
+
+/* Navigation Styles - Updated for sticky behavior */
+.nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+}
+
+.nav-container .site-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #333;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 2rem; /* Add margin for fixed navbar */
+}
+
+.projects-title {
+  position: sticky;
+  top: 120px; /* Adjust for fixed navbar height */
+}
+
+.projects-title h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.projects-list {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem 0;
+}
+
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.project-item:first-child {
+  padding-top: 0;
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-item:hover {
+  color: #2563eb;
+}
+
+.project-content {
+  flex: 1;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.project-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: rgba(107, 114, 128, 0.1);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.down-arrow {
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.project-item:hover .down-arrow {
+  color: #2563eb;
+  transform: translateY(3px);
+}
+
+.project-item:hover .project-category {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: #2563eb;
+}
+
+/* Project Detail Pages */
+.project-page {
+  margin-top: 4rem;
+  padding: 4rem 0;
+  border-top: 2px solid #e5e7eb;
+  min-height: 100vh;
+}
+
+.project-header {
+  margin-bottom: 2rem;
+}
+
+.project-number {
+  font-size: 1rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.project-main-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.project-description {
+  font-size: 1.125rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.project-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.project-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-meta-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.project-meta-value {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.project-image-placeholder {
+  width: 100%;
+  height: 400px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+    padding-top: 100px; /* Adjust for mobile navbar */
+  }
+
+  .site-container {
+    margin: 0 auto;
+    padding: 2.5rem 80px;
+    min-height: calc(100vh - 2rem);
+  }
+
+  .nav-container .site-container {
+    padding: 0 1.5rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .projects-title {
+    position: static;
+  }
+
+  .projects-title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem 0;
+  }
+
+  .project-content {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .down-arrow {
+    align-self: flex-end;
+    margin-left: 0;
+  }
+
+  .project-main-title {
+    font-size: 2rem;
+  }
+
+  .project-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .nav-container .site-container {
+    padding: 0 1rem;
+  }
+
+  .projects-title h1 {
+    font-size: 2rem;
+  }
+
+  .project-title {
+    font-size: 1.125rem;
+  }
+
+  .project-category {
+    font-size: 0.8rem;
+  }
+
+  .projects {
+    gap: 1.5rem;
+  }
+
+  .project-main-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Focus states for accessibility */
+.project-item:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
