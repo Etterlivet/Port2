@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+<div class="projects">
+  <div class="projects-title">
+    <h1>{{ page.title }}</h1>
+  </div>
+
+  <div class="projects-list">
+    {% for project in site.data.projects %}
+    <div class="project-item" onclick="scrollToProject('project{{ forloop.index }}')">
+      <div class="project-content">
+        <div class="project-title">{{ project.title }}</div>
+        <div class="project-category">{{ project.category }}</div>
+      </div>
+      <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+    {% endfor %}
+    
+    <!-- About section item -->
+    <div class="project-item" onclick="scrollToProject('about-section')">
+      <div class="project-content">
+        <div class="project-title">About</div>
+        <div class="project-category">PERSONAL</div>
+      </div>
+      <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Project Detail Pages -->
+{% for project in site.data.projects %}
+<div id="project{{ forloop.index }}" class="project-page">
+  <div class="project-header">
+    <div class="project-number">Project {{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+    <h2 class="project-main-title">{{ project.title }}</h2>
+    <p class="project-description">{{ project.description }}</p>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <div class="project-meta-label">Client</div>
+        <div class="project-meta-value">{{ project.client }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Year</div>
+        <div class="project-meta-value">{{ project.year }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Role</div>
+        <div class="project-meta-value">{{ project.role }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="project-image-placeholder">
+    Project Images & Details Coming Soon
+  </div>
+</div>
+{% endfor %}
+
+<!-- About Section -->
+<div id="about-section" class="project-page">
+  <div class="project-header">
+    <div class="project-number">About</div>
+    <h2 class="project-main-title">Amanda Pinsker</h2>
+    <p class="project-description">
+      {{ site.data.about.intro | default: "Creative designer and developer with passion for creating meaningful digital experiences. Based in [Location], I specialize in user interface design, user experience research, and front-end development." }}
+    </p>
+    <div class="project-meta">
+      <div class="project-meta-item">
+        <div class="project-meta-label">Location</div>
+        <div class="project-meta-value">{{ site.data.about.location | default: "New York, NY" }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Experience</div>
+        <div class="project-meta-value">{{ site.data.about.experience | default: "5+ Years" }}</div>
+      </div>
+      <div class="project-meta-item">
+        <div class="project-meta-label">Focus</div>
+        <div class="project-meta-value">{{ site.data.about.focus | default: "UI/UX Design" }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="project-image-placeholder">
+    {{ site.data.about.additional_content | default: "Additional About Content & Images Coming Soon" }}
+  </div>
+</div>
