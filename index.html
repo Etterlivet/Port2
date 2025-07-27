@@ -247,6 +247,11 @@
        border-radius: 8px;
        
     }
+
+     #project2 .project-images .project-video {
+  height: 700px;
+}
+
     
     .project-image-placeholder {
       width: 100%;
@@ -338,6 +343,12 @@
       .project-image-placeholder {
         height: 250px;
       }
+
+      #project2 .project-img .project-video {
+    height: auto;
+    max-height: 400px;
+  }
+      
     }
   </style>
 </head>
@@ -453,11 +464,10 @@
           </div>
         </div>
         <div class="project-images">
-          <img class="project-img"
-            src="assets/images/SR1.mov"
-            alt="E-commerce Homepage Design"
-            loading="lazy"
-          />
+          <video class="project-video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/images/SR1.mov" type="video/quicktime">
+          Your browser does not support the video tag.
+          </video>
           <div class="project-image-placeholder">
             Transaction Flow
           </div>
