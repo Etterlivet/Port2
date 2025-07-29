@@ -27,6 +27,11 @@
       min-height: calc(100vh - 120px);
     }
 
+    img, video {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
     /* Navigation */
     .nav-container {
       position: fixed;
@@ -270,6 +275,8 @@
         
     }
 
+    
+
     /* Pages */
     .page {
       display: none;
@@ -440,12 +447,13 @@
           </div>
          </div>
         <div class="project-images">
-          <video class="project-video" autoplay muted loop playsinline preload="auto">
+          <video class="project-video" autoplay muted loop playsinline preload="auto" controls controlslist="nodownload nofullscreen noremoteplay">
+             
           <source src="assets/images/1_1.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
           
-          <video class="project-video" autoplay muted loop playsinline preload="auto">
+          <video class="project-video" autoplay muted loop playsinline preload="auto" controls controlslist="nodownload nofullscreen noremoteplay">
           <source src="assets/images/1_2.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
@@ -791,6 +799,8 @@
         }, 500);
       }
     });
+    // Disable download
+    document.addEventListener('contextmenu', event => event.preventDefault());
   </script>
 </body>
 </html>
