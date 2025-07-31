@@ -278,20 +278,15 @@
        
     }
 
-    /* Container controls height scaling */
-.project-video-wrapper {
-  width: 100%;
-  height: 600px; /* 1.5x previous 400px height */
-  max-height: 80vh;
-  overflow: hidden;
-}
+
 
     
      #project1 .project-images .project-video {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   width: 100%;
   height: auto;
-  object-fit: contain; /* This avoids cropping */
+  object-fit: cover;
+  object-position: center top; /* or try 'center center', 'center bottom' */
 }
 
      .project-images .project-video {
@@ -521,19 +516,19 @@
          </div>   
         </div>
         <div class="project-images">
-          <div class="project-video-wrapper">
+          
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
              
           <source src="assets/images/1_1.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
-          </div>
-          <div class="project-video-wrapper">
+          
+          
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
           <source src="assets/images/1_2.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
-          </div>
+          
           <img class="project-img"
             src="assets/images/1_3.jpg"
             alt="E-commerce Homepage Design"
