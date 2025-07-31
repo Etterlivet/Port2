@@ -558,11 +558,7 @@
             </div>
          </div>   
         </div>
-
-
-
-
-          
+      
         
          <div class="project-images">
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
@@ -609,8 +605,15 @@
         <source src="assets/images/3_1.mov" type="video/quicktime">
         Your browser does not support the video tag.
       </video>
-
-      <img class="project-img" src="assets/images/3_2.jpg" alt="Information architecture" loading="lazy" />
+      
+      <!-- Force image to next row using a full-width wrapper -->
+    <div style="grid-column: 1 / -1;">
+     <img class="project-img"
+      src="assets/images/3_2.jpg"
+      alt="Information architecture"
+      loading="lazy"
+     />
+     
     </div>
   </div>
 </div>
