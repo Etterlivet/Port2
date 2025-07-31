@@ -279,7 +279,10 @@
     }
 
      #project1 .project-images .project-video {
-  height: 700px;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
      .project-images .project-video {
@@ -413,8 +416,8 @@
         <div class="projects-list">
           <div class="project-item" onclick="scrollToProject('project1')">
             <div class="project-content">
-              <div class="project-title">E-commerce Platform Redesign</div>
-              <div class="project-category">WEB DESIGN</div>
+              <div class="project-title">Data driven Fintech Experience Design</div>
+              <div class="project-category">UX/INTERACTION DESIGN, RAPID PROTOTYPING</div>
             </div>
             <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -478,15 +481,37 @@
       <div id="project1" class="project-page">
         <div class="project-header">
           <div class="project-number">Project 01</div>
-          <h2 class="project-main-title">E-commerce Platform Redesign</h2>
-          <p class="project-description">Complete redesign of a major e-commerce platform focusing on user experience, conversion optimization, and mobile-first approach. The project involved extensive user research, A/B testing, and iterative design improvements.</p>
-          <div class="project-meta">
-            <div class="project-meta-item">
+          <h2 class="project-main-title">Data driven Fintech Experience Design</h2>
+          
+          <div class="project-text-grid">
+             <!-- Role on top of paragraph 1 -->
+            <div class="project-meta">
+             <div class="project-meta-item">
               <div class="project-meta-label">Role</div>
-              <div class="project-meta-value">Lead Designer</div>
+              <div class="project-meta-value">UX Strategy, Information Architecture </div>
+             </div>
             </div>
-          </div>
-         </div>
+
+             <!-- Process row -->
+            <div class="project-meta process-meta">
+             <div class="project-meta-item">
+              <div class="project-meta-label">Process/Impact</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+               Led the end-to-end design of a fintech wealth management app focused on increasing user conversion through progressive disclosure and a simplified, trust-driven interface. Defined key user flows, integrated data-driven insights for personalized recommendations, and built a functional prototype tested across multiple usability rounds. Applied lean and agile methodologies to enable rapid iteration cycles, balancing speed with evidence-based design decisions. The process resulted in improved user confidence, streamlined task completion, and a higher intent-to-convert rate across pilot testing groups.               </p>
+              </div>
+             </div>
+             <div class="project-meta-item">
+              <div class="project-meta-label">Impact</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+                -
+               </p>
+              </div>
+             </div>
+            </div>
+         </div>   
+        </div>
         <div class="project-images">
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
              
