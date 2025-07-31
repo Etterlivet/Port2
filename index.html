@@ -218,7 +218,7 @@
       font-size: 1rem;
       color: #333;
       line-height: 1.6;
-      margin-bottom: 2rem;
+      margin: 0; /* optional: remove extra bottom spacing */
       max-width: 500px;
     }
 
@@ -226,6 +226,7 @@
       display: flex;
       gap: 2rem;
       margin-bottom: 3rem;
+      grid-column: 1 / -1; /* Span the full width (both columns) */
     }
 
     .project-meta-item {
@@ -582,7 +583,7 @@
      <div id="project5" class="project-page">
         <div class="project-header">
           <div class="project-number">Project 05</div>
-          <h2 class="project-main-title">Reimagining Legacy: Cross-Market Innovation Through Strategic Design</h2>
+          <h2 class="project-main-title">Cross-Market Innovation Through Strategic Design</h2>
           <div class="project-text-grid">
              <!-- Role on top of paragraph 1 -->
             <div class="project-meta">
