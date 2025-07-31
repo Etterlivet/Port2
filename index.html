@@ -278,6 +278,15 @@
        
     }
 
+    /* Container controls height scaling */
+.project-video-wrapper {
+  width: 100%;
+  height: 600px; /* 1.5x previous 400px height */
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+    
      #project1 .project-images .project-video {
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -416,7 +425,7 @@
         <div class="projects-list">
           <div class="project-item" onclick="scrollToProject('project1')">
             <div class="project-content">
-              <div class="project-title">Data driven Fintech Experience Design</div>
+              <div class="project-title">Data-driven Fintech Experience Design</div>
               <div class="project-category">UX/INTERACTION DESIGN, RAPID PROTOTYPING</div>
             </div>
             <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,7 +435,7 @@
 
           <div class="project-item" onclick="scrollToProject('project2')">
             <div class="project-content">
-              <div class="project-title">Mobile App Interface - FinTech</div>
+              <div class="project-title">Designing A Human-Centered Wellness Experience Platform </div>
               <div class="project-category">UI/UX DESIGN</div>
             </div>
             <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -488,7 +497,7 @@
             <div class="project-meta">
              <div class="project-meta-item">
               <div class="project-meta-label">Role</div>
-              <div class="project-meta-value">UX Strategy, Information Architecture </div>
+              <div class="project-meta-value">UX/Interaction Design </div>
              </div>
             </div>
 
@@ -504,7 +513,7 @@
               <div class="project-meta-label">Impact</div>
               <div class="project-meta-value">
                <p class="project-description">
-                The design process resulted in improved user confidence, streamlined task completion, and a higher intent-to-convert rate across pilot testing groups. The project led to reduced cognitive friction in key onboarding tasks, and delivered a scalable design system ready for launch
+                The design process resulted in improved user confidence, streamlined task completion, and a higher intent-to-convert rate across pilot testing groups. The project led to reduced cognitive friction in key onboarding tasks, and delivered a scalable design system ready for launch.
                </p>
               </div>
              </div>
@@ -512,16 +521,19 @@
          </div>   
         </div>
         <div class="project-images">
+          <div class="project-video-wrapper">
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
              
           <source src="assets/images/1_1.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
-          
+          </div>
+          <div class="project-video-wrapper">
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
           <source src="assets/images/1_2.mov" type="video/quicktime">
           Your browser does not support the video tag.
           </video>
+          </div>
           <img class="project-img"
             src="assets/images/1_3.jpg"
             alt="E-commerce Homepage Design"
@@ -538,16 +550,38 @@
       <div id="project2" class="project-page">
         <div class="project-header">
           <div class="project-number">Project 02</div>
-          <h2 class="project-main-title">Mobile App Interface - FinTech</h2>
-          <p class="project-description">Design and development of a comprehensive mobile banking application with focus on security, accessibility, and intuitive financial management tools. Created design system and prototypes for iOS and Android platforms.</p>
-          <div class="project-meta">
-            
-            <div class="project-meta-item">
+          <h2 class="project-main-title">A Human-Centered Wellness Experience Platform</h2>
+          <div class="project-text-grid">
+             <!-- Role on top of paragraph 1 -->
+            <div class="project-meta">
+             <div class="project-meta-item">
               <div class="project-meta-label">Role</div>
-              <div class="project-meta-value">UX/UI Designer</div>
+              <div class="project-meta-value">UX/Interaction Design</div>
+             </div>
             </div>
-          </div>
+
+             <!-- Process row -->
+            <div class="project-meta process-meta">
+             <div class="project-meta-item">
+              <div class="project-meta-label">Process/Impact</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+               Led the end-to-end design of a wellness platform that empowers patients to monitor their well-being, manage symptoms, and track health trends over time. Mapped end-to-end user flows based on qualitative interviews and journey mapping, then developed and tested a functional prototype through multiple usability studies with stakeholders. Leveraged a human-centered design process combined with data-informed iteration loops, emotional usability and technical functionality validations to refine content hierarchy, interaction patterns, and visual accessibility.             </div>
+             <div class="project-meta-item">
+              <div class="project-meta-label">Impact</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+               The platform achieved increased user engagement and retention upon initial testing, with feedback highlighting clarity and control, ease of use, and emotional reassurance through personalized symptom tracking.               </p>
+              </div>
+             </div>
+            </div>
+         </div>   
         </div>
+
+
+
+
+          
         
          <div class="project-images">
           <video class="project-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplay">
