@@ -248,6 +248,18 @@
       font-weight: 500;
     }
 
+ 
+     .project-meta.process-meta {
+  display: flex;
+  gap: 3rem; /* spacing between Process and Impact */
+}
+
+.project-meta.process-meta .project-meta-item {
+  flex: 1;
+}
+
+    
+
     .project-images {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -431,8 +443,8 @@
 
           <div class="project-item" onclick="scrollToProject('project4')">
             <div class="project-content">
-              <div class="project-title">Dashboard Analytics Tool</div>
-              <div class="project-category">DATA VISUALIZATION</div>
+              <div class="project-title">Strategic Exploration of Value-Added Innovation</div>
+              <div class="project-category">SERVICE DESIGN, INNOVATION STRATEGY</div>
             </div>
             <svg class="down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -594,12 +606,27 @@
               <div class="project-meta-value">Innovation Strategy, UX Research, Strategic Design</div>
              </div>
             </div>
-            <p class="project-description">Led qualitative research including in-depth user interviews, contextual observations and insight synthesis, translating market foresight, cultural and ergonomic user needs into strategic directions to inform design decisions and stakeholder prioritisation. Leveraged structured analytical tools to frame product roadmaps and innovation pivots around growth potential and brand narrative. Drove actionable alignment across digital and physical touch points, influencing both short-term iterations and long-term product visioning. </p>
-            <p class="project-description">The project delivered tangible impact across user satisfaction, design refinement, product-market alignment, and organisational clarity. It supported improved user resonance, enhanced cross-functional collaboration, and informed the innovation direction on crossed-market resonance. The result contributed to repositioning legacy offerings within new cultural contexts, fostering innovation momentum and deeper internal engagement through innovation clarity and shared direction across teams. 
-           </p>
-          </div>
 
-
+             <!-- Process row -->
+            <div class="project-meta process-meta">
+             <div class="project-meta-item">
+              <div class="project-meta-label">Process</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+                Led qualitative research including in-depth user interviews, contextual observations and insight synthesis, translating market foresight, cultural and ergonomic user needs into strategic directions to inform design decisions and stakeholder prioritisation. Leveraged structured analytical tools to frame product roadmaps and innovation pivots around growth potential and brand narrative. Drove actionable alignment across digital and physical touch points, influencing both short-term iterations and long-term product visioning.
+               </p>
+              </div>
+             </div>
+             <div class="project-meta-item">
+              <div class="project-meta-label">Impact</div>
+              <div class="project-meta-value">
+               <p class="project-description">
+                The project delivered tangible impact across user satisfaction, design refinement, product-market alignment, and organisational clarity. It supported improved user resonance, enhanced cross-functional collaboration, and informed the innovation direction on crossed-market resonance. The result contributed to repositioning legacy offerings within new cultural contexts, fostering innovation momentum and deeper internal engagement through innovation clarity and shared direction across teams. 
+               </p>
+              </div>
+             </div>
+            </div>
+      </div>   
           
         </div>
        <div class="project-images">
