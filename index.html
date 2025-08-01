@@ -962,7 +962,7 @@ function scrollToProject(projectId) {
     return;
   }
  
- 
+ document.querySelectorAll('.project-page').forEach(p => p.classList.remove('active'));
 
   // Then activate the target project
   element.classList.add('active');
@@ -1021,7 +1021,8 @@ function scrollToNextProject() {
     const nextProjectId = projectIds[i + 1];
     const nextElement = document.getElementById(nextProjectId);
     
-    if (nextElement && !nextElement.classList.contains('active')) {
+    if (nextElement) {
+       document.querySelectorAll('.project-page').forEach(p => p.classList.remove('active')); // ❗ ensure only one active
       // Add loading pause before scrolling to next project
       isUserScrolling = false;
       setTimeout(() => {
