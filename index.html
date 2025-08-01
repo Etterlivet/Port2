@@ -302,10 +302,35 @@
       align-items: center;
       justify-content: center;
       color: #9ca3af;
-      font-size: 1rem;
-      
-        
+      font-size: 1rem;     
     }
+
+     #backToTop {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  padding: 10px 14px;
+  font-size: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+#backToTop.show {
+  opacity: 0.8;
+  pointer-events: auto;
+}
+
+#backToTop:hover {
+  opacity: 1;
+}
+
 
     
 
@@ -719,7 +744,7 @@
         </div>
       </div>
 
-
+      
     
       <div id="about-section" class="project-page">
         <div class="project-header">
@@ -747,7 +772,9 @@
         </div>
       </div>
     </div>
-
+     <!-- button to top -->    
+    <button id="backToTop" title="Back to Top">↑</button>
+    
     <!-- Playground Page -->
     <div id="playground" class="page">
       <div class="projects">
@@ -922,21 +949,51 @@
   </div>
 
   <script>
-    function scrollToProject(projectId) {
-      const element = document.getElementById(projectId);
-      if (element) {
-        // Show the element first
-        element.classList.add('active');
-        
-        // Account for fixed navbar height
-        const navHeight = 120;
-        const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({
-          top: elementTop,
-          behavior: 'smooth'
-        });
-      }
+function scrollToProject(projectId) {
+  const element = document.getElementById(projectId);
+
+  if (!element) return;
+
+  // Ensure "Projects" page is visible first
+  const projectPage = document.getElementById('projects');
+  if (!projectPage.classList.contains('active')) {
+    showPage('projects'); // Show Projects page
+    setTimeout(() => scrollToProject(projectId), 300); // Wait for it to render
+    return;
+  }
+
+  // Activate this project section
+  element.classList.add('active');
+
+  // Offset for navbar
+  const navHeight = 120;
+  const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+  // Custom scroll with ease-in-out
+  window.scrollTo({
+    top: elementTop,
+    behavior: 'smooth' // Native smooth scroll, use CSS for easing
+  });
+}
+
+    //Add scroll to top button
+    const backToTopBtn = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
     }
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
 
     function showPage(pageName) {
       // Hide all pages
