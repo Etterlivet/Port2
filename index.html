@@ -962,21 +962,82 @@ function scrollToProject(projectId) {
     return;
   }
 
-  // Activate this project section
-  element.classList.add('active');
+
 
   // Offset for navbar
   const navHeight = 120;
   const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
 
-  // Custom scroll with ease-in-out
-  window.scrollTo({
-    top: elementTop,
-    behavior: 'smooth' // Native smooth scroll, use CSS for easing
-  });
+smoothScrollTo(elementTop, 800); // Use custom easing function instead of native smooth scroll
 }
 
+// MODIFICATION 4: NEW FUNCTION - Custom smooth scroll with ease-in-out
+function smoothScrollTo(targetY, duration) {
+  const startY = window.pageYOffset;
+  const distance = targetY - startY;
+  const startTime = performance.now();
 
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  }
+
+  function scrollStep(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    
+    window.scrollTo(0, startY + distance * ease);
+    
+    if (progress < 1) {
+      requestAnimationFrame(scrollStep);
+    }
+  }
+
+  requestAnimationFrame(scrollStep);
+}
+
+// MODIFICATION 2 & 3: NEW FUNCTION - Auto-scroll to next project with loading pause
+function scrollToNextProject() {
+  const projectIds = ['project1', 'project2', 'project3', 'project4', 'project5', 'about-section'];
+  const currentScrollY = window.pageYOffset;
+  const navHeight = 120;
+  
+  for (let i = 0; i < projectIds.length; i++) {
+    const element = document.getElementById(projectIds[i]);
+    if (element) {
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      
+      // If we're past this element but before the next one, scroll to next
+      if (currentScrollY >= elementTop - 100 && i < projectIds.length - 1) {
+        const nextElement = document.getElementById(projectIds[i + 1]);
+        if (nextElement) {
+          // MODIFICATION 3: Add loading pause (500ms) before scrolling to next project
+          setTimeout(() => {
+            scrollToProject(projectIds[i + 1]);
+          }, 500);
+          break;
+        }
+      }
+    }
+  }
+}
+
+// MODIFICATION 2: NEW EVENT LISTENER - Detect scroll and trigger next project
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+  // Clear existing timeout to avoid multiple triggers
+  clearTimeout(scrollTimeout);
+  
+  // Set timeout to detect when user stops scrolling
+  scrollTimeout = setTimeout(() => {
+    // Only auto-scroll if we're on the projects page
+    const projectPage = document.getElementById('projects');
+    if (projectPage && projectPage.classList.contains('active')) {
+      scrollToNextProject();
+    }
+  }, 150); // Wait 150ms after user stops scrolling
+});
+   
     
 
     //Add scroll to top button
@@ -991,10 +1052,7 @@ function scrollToProject(projectId) {
   });
 
   backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+     smoothScrollTo(0, 600);
   });
 
 
@@ -1015,8 +1073,8 @@ function scrollToProject(projectId) {
       navLinks.forEach(link => link.classList.remove('active'));
       document.getElementById(pageName + '-nav').classList.add('active');
       
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // MODIFICATION 4: Apply custom easing to showPage scroll
+      smoothScrollTo(0, 600);
     }
 
     // Handle hash changes for direct navigation
