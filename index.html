@@ -1012,7 +1012,8 @@ function scrollToNextProject() {
   
   for (let i = 0; i < projectIds.length; i++) {
     const element = document.getElementById(projectIds[i]);
-    if (element) { // Check all projects, not just active ones
+    if (element && element.classList.contains('active')) { // Only check active projects
+
   const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
   const elementBottom = elementTop + element.offsetHeight;
   
@@ -1021,7 +1022,7 @@ function scrollToNextProject() {
     const nextProjectId = projectIds[i + 1];
     const nextElement = document.getElementById(nextProjectId);
     
-    if (nextElement) {
+    if (nextElement && !nextElement.classList.contains('active')) {
       // Add loading pause before scrolling to next project
       isUserScrolling = false;
       setTimeout(() => {
