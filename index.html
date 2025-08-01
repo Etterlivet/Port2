@@ -962,8 +962,7 @@ function scrollToProject(projectId) {
     return;
   }
  
-  const allProjectPages = document.querySelectorAll('.project-page');
-  allProjectPages.forEach(page => page.classList.remove('active'));
+   
 
   // Then activate the target project
   element.classList.add('active');
@@ -1013,7 +1012,7 @@ function scrollToNextProject() {
   
   for (let i = 0; i < projectIds.length; i++) {
     const element = document.getElementById(projectIds[i]);
-    if (element) { // Check all projects, not just active ones
+    if (element && element.classList.contains('active')) { // Only check active projects
   const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
   const elementBottom = elementTop + element.offsetHeight;
   
@@ -1022,10 +1021,7 @@ function scrollToNextProject() {
     const nextProjectId = projectIds[i + 1];
     const nextElement = document.getElementById(nextProjectId);
     
-    if (nextElement) {
-    // Hide all other project pages first
-    const allProjectPages = document.querySelectorAll('.project-page');
-    allProjectPages.forEach(page => page.classList.remove('active'));
+    if (nextElement && !nextElement.classList.contains('active')) {
       // Add loading pause before scrolling to next project
       isUserScrolling = false;
       setTimeout(() => {
