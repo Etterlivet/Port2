@@ -178,12 +178,10 @@
       padding: 4rem 0;
       border-top: 2px solid #e5e7eb;
       min-height: 100vh;
-      display: none;
-    }
-
-    .project-page.active {
       display: block;
     }
+
+ 
 
     .project-header {
       margin-bottom: 2rem;
@@ -686,11 +684,7 @@
             alt="E-commerce Homepage Design"
             loading="lazy"
           />
-         <img class="project-img"
-            src="assets/images/4_1.jpg"
-            alt="E-commerce Homepage Design"
-            loading="lazy"
-          />
+         
         </div>
       </div>
 
@@ -961,9 +955,7 @@ function scrollToProject(projectId) {
     setTimeout(() => scrollToProject(projectId), 300); // Wait for it to render
     return;
   }
- 
-  // **ADD THIS LINE** - Hide all other project pages first
-    document.querySelectorAll('.project-page').forEach(page => page.classList.remove('active')); 
+  
 
   // Then activate the target project
   element.classList.add('active');
