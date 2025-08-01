@@ -961,8 +961,13 @@ function scrollToProject(projectId) {
     setTimeout(() => scrollToProject(projectId), 300); // Wait for it to render
     return;
   }
+ 
+  // First hide all other project pages
+  const allProjectPages = document.querySelectorAll('.project-page');
+  allProjectPages.forEach(page => page.classList.remove('active'));
 
-
+  // Then activate the target project
+  element.classList.add('active');
 
   // Offset for navbar
   const navHeight = 120;
