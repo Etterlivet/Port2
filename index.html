@@ -1013,22 +1013,26 @@ function scrollToNextProject() {
   for (let i = 0; i < projectIds.length; i++) {
     const element = document.getElementById(projectIds[i]);
     if (element && element.classList.contains('active')) { // Only check active projects
-      const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
-      const elementBottom = elementTop + element.offsetHeight;
-      
-      // If we've scrolled past this project, activate and scroll to next
-      if (currentScrollY >= elementBottom - 200 && i < projectIds.length - 1) {
-        const nextProjectId = projectIds[i + 1];
-        const nextElement = document.getElementById(nextProjectId);
-        if (nextElement && !nextElement.classList.contains('active')) {
-          // MODIFICATION 3: Add loading pause (500ms) before scrolling to next project
-          setTimeout(() => {
-            scrollToProject(nextProjectId);
-          }, 500);
-          break;
-        }
-      }
+  const elementTop = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+  const elementBottom = elementTop + element.offsetHeight;
+  
+  // If we've scrolled past 80% of this project, move to next
+  if (currentScrollY >= elementTop + (element.offsetHeight * 0.8) && i < projectIds.length - 1) {
+    const nextProjectId = projectIds[i + 1];
+    const nextElement = document.getElementById(nextProjectId);
+    
+    if (nextElement && !nextElement.classList.contains('active')) {
+      // Add loading pause before scrolling to next project
+      isUserScrolling = false;
+      setTimeout(() => {
+        nextElement.classList.add('active');
+        const nextElementTop = nextElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        smoothScrollTo(nextElementTop, 800);
+      }, 500);
+      break;
     }
+  }
+}
   }
 }
 
@@ -1077,9 +1081,11 @@ window.addEventListener('scroll', () => {
       const pages = document.querySelectorAll('.page');
       pages.forEach(page => page.classList.remove('active'));
       
-      // Hide all project pages
-      const projectPages = document.querySelectorAll('.project-page');
-      projectPages.forEach(page => page.classList.remove('active'));
+      // FIXED: Only hide project pages when switching away from projects/playground
+  if (pageName !== 'projects' && pageName !== 'playground') {
+    const projectPages = document.querySelectorAll('.project-page');
+    projectPages.forEach(page => page.classList.remove('active'));
+  }
       
       // Show selected page
       document.getElementById(pageName).classList.add('active');
