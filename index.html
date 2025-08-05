@@ -504,7 +504,17 @@
       <a onclick="scrollToProject('about-section')" class="nav-link">About</a>
     </div>
   </nav>
-
+  <!-- dot pagination nav  -->     
+     <div class="dot-nav">
+  <button onclick="scrollToSection('projects')" title="Projects"></button>
+  <button onclick="scrollToSection('project1')" title="Project 01"></button>
+   <button onclick="scrollToSection('project2')" title="Project 02"></button>  
+   <button onclick="scrollToSection('project3')" title="Project 03"></button> 
+   <button onclick="scrollToSection('project4')" title="Project 04"></button> 
+    <button onclick="scrollToSection('project5')" title="Project 05"></button>    
+       
+  <button onclick="scrollToSection('about-section')" title="About"></button>
+</div>
   <div class="site-container">
     <!-- Projects Page -->
     <div id="projects" class="page active">
@@ -716,6 +726,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div> <!--  properly close project-text-grid -->
 
     <div class="project-images">
@@ -733,7 +744,7 @@
       loading="lazy"
      />
      <div></div>
-    </div>
+     
   </div>
 </div>
 
@@ -816,8 +827,7 @@
               </div>
              </div>
             </div>
-      </div>   
-          
+          </div>   
         </div>
        <div class="project-images">
          <img class="project-img"
@@ -858,17 +868,7 @@
          
     </div>
         
-     <!-- dot pagination nav  -->     
-     <div class="dot-nav">
-  <button onclick="scrollToSection('projects')" title="Projects"></button>
-  <button onclick="scrollToSection('project1')" title="Project 01"></button>
-   <button onclick="scrollToSection('project2')" title="Project 02"></button>  
-   <button onclick="scrollToSection('project3')" title="Project 03"></button> 
-   <button onclick="scrollToSection('project4')" title="Project 04"></button> 
-    <button onclick="scrollToSection('project5')" title="Project 05"></button>    
-       
-  <button onclick="scrollToSection('about-section')" title="About"></button>
-</div>
+     
         
      <!-- button to top -->    
     <button id="backToTop" title="Back to Top">↑</button>
