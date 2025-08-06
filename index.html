@@ -548,17 +548,16 @@
       <a onclick="scrollToProject('about-section')" class="nav-link">About</a>
     </div>
   </nav>
-  <!-- dot pagination nav  -->     
-     <div class="dot-nav">
-  <button onclick="scrollToSection('projects')" title="Projects"></button>
-  <button onclick="scrollToSection('project1')" title="Project 01"></button>
-   <button onclick="scrollToSection('project2')" title="Project 02"></button>  
-   <button onclick="scrollToSection('project3')" title="Project 03"></button> 
-   <button onclick="scrollToSection('project4')" title="Project 04"></button> 
-    <button onclick="scrollToSection('project5')" title="Project 05"></button>    
-       
-  <button onclick="scrollToSection('about-section')" title="About"></button>
+ <div class="dot-nav">
+    <button onclick="scrollToSection('projects')" title="Projects" data-target="projects"></button>
+    <button onclick="scrollToSection('project1')" title="Project 01" data-target="project1"></button>
+    <button onclick="scrollToSection('project2')" title="Project 02" data-target="project2"></button>
+    <button onclick="scrollToSection('project3')" title="Project 03" data-target="project3"></button>
+    <button onclick="scrollToSection('project4')" title="Project 04" data-target="project4"></button>
+    <button onclick="scrollToSection('project5')" title="Project 05" data-target="project5"></button>
+    <button onclick="scrollToSection('about-section')" title="About" data-target="about-section"></button>
 </div>
+
   <div class="site-container">
     <!-- Projects Page -->
     <div id="projects" class="page active">
