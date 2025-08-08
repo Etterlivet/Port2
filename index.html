@@ -315,8 +315,174 @@
       font-size: 1rem;     
     }
 
+          #playground .projects-grid {
+  display: none; /* flex , hide grid */
+   
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+  justify-content: center; /* center items on small screens */
+}
+
+#playground .project-thumb {
+  flex: 1 1 calc(50% - 2rem); /* 2 columns */
+  max-width: 300px; /* optional max width for better control */
+  cursor: pointer;
+  text-align: center;
+}
+
+#playground .project-thumb img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#playground .project-thumb:hover img {
+  transform: scale(1.03);
+}
+
+#playground .project-label {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: #888;
+}
+ 
 
 
+    
+/* tagcanvas-project */
+#tagcanvas-project {
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  color: #FFFFFF;
+  font-family: 'Source Sans Pro', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container for all spheres */
+#tagcanvas-project #myCanvasContainer {
+  position: relative;
+  width: 600px;
+  height: 600px;
+}
+
+#tagcanvas-project .canvas-wrapper {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  z-index: 2;
+}
+
+/* Main canvas */
+#tagcanvas-project #mainCanvas {
+   position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+   
+}
+
+#tagcanvas-project .sphere-shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%;
+  background: #faa796;
+  background: radial-gradient(circle,rgba(250, 167, 150, 1) 0%, rgba(28, 8, 255, 1) 100%);
+  
+  filter: blur(60px);
+  pointer-events: none;
+  
+ 
+}
+
+
+
+/* Tag list hidden by default */
+#tagcanvas-project #mainTags,
+#tagsSub1,
+#tagsSub2 {
+  display: none;
+}
+
+#tagcanvas-project #mainTags a {
+  color: white;
+}
+/* Sub-sphere canvas wrapper */
+#tagcanvas-project .sub-sphere {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  z-index: 3;
+  width: 200px;
+  height: 200px;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+#tagcanvas-project .sub-sphere canvas {
+  width: 100%;
+  height: 100%;
+   
+}
+
+#tagcanvas-project #sub1 {
+  width: 200px;
+  height: 200px;
+  z-index: 3;
+  position: relative;
+}
+
+/* You can toggle visibility with JS by toggling this class */
+#tagcanvas-project .sub-sphere.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Tag styling inside the canvas */
+#tagcanvas-project ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#tagcanvas-project #mainTags a {
+  color: #693EFE !important;
+}
+
+#tagcanvas-project ul li a {
+  color: #693EFE !important;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 5px #0ff;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+#tagcanvas-project ul li a:hover {
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+/* Optional: show sub-spheres only when hovered */
+#tagcanvas-project .sphere-category:hover .sub-sphere {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+ 
+    
 
 /* Dot Navigation - Fixed */
 .dot-nav {
@@ -438,9 +604,7 @@
   text-decoration: underline;
 }
  
-    #playground {
-  display: none !important;
-}
+ 
 
     /* Pages */
     .page {
@@ -524,8 +688,18 @@
       .project-image-placeholder {
         height: 250px;
       }
+    
+    .dot-nav {
+        right: 1rem;
+    }
+    
 
+      
  
+  #playground .project-thumb {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 
 .footer-content {
     flex-direction: row;
@@ -636,7 +810,7 @@
       </div>
     
       <!-- Project Details -->
-      <div id="project1" class="project-page" data-section-id="project1">
+      <div id="project1" class="page" data-section-id="project1">
 
         <div class="project-header">
           <div class="project-number">Project 01</div>
@@ -691,7 +865,7 @@
         </div>
       </div>
 
-      <div id="project2" class="project-page" data-section-id="project2">
+      <div id="project2" class="page" data-section-id="project2">
         <div class="project-header">
           <div class="project-number">Project 02</div>
           <h2 class="project-main-title">A Human-Centered Wellness Experience Platform</h2>
@@ -745,7 +919,7 @@
         </div>
       </div>
 
-        <div id="project3" class="project-page" data-section-id="project3">
+        <div id="project3" class="page" data-section-id="project3">
   <div class="project-header">
     <div class="project-number">Project 03</div>
     <h2 class="project-main-title">UX Design and Optimization for Internal Tooling</h2>
@@ -793,7 +967,7 @@
 </div>
 
 
-          <div id="project4" class="project-page" data-section-id="project4">
+          <div id="project4" class="page" data-section-id="project4">
         <div class="project-header">
           <div class="project-number">Project 04</div>
           <h2 class="project-main-title">Strategic Exploration of Value-Added Innovation </h2>
@@ -839,7 +1013,7 @@
       </div>
 
 
-    <div id="project5" class="project-page" data-section-id="project5">
+    <div id="project5" class="page" data-section-id="project5">
         <div class="project-header">
           <div class="project-number">Project 05</div>
           <h2 class="project-main-title">Cross-Market Innovation Through Strategic Design</h2>
@@ -889,7 +1063,7 @@
     
       
     
-       <div id="about-section" class="project-page" data-section-id="about-section">
+       <div id="about-section" class="page" data-section-id="about-section">
         <div class="project-header">
           <div class="project-number">About</div>
           <h2 class="project-main-title"></h2>
@@ -915,13 +1089,94 @@
         
      
     
-    
+
     <!-- Playground Page -->
-    <div id="playground" class="page">
-      <div class="projects">
-        <div class="projects-title">
-          <h1>Playground</h1>
-        </div>
+   <div id="playground" class="page">
+   <div class="projects">
+    <div class="projects-title">
+      <h1>Playground</h1>
+    </div>
+    <div class="projects-grid">
+      <div class="project-thumb" onclick="scrollToProject('tagcanvas-project')">
+        <img src="tagcloud-preview.jpg" alt="Tag Cloud Preview">
+         <div class="project-label">Tag Cloud</div>
+    </div>
+         <div class="project-thumb">
+      <img src="other-preview.jpg" alt="Other Project">
+      <div class="project-label">Another Project</div>
+    </div>
+      <!-- Add more as needed -->
+  </div>
+          
+   <!-- 🌀 TagCanvas Project Section -->
+  <div id="tagcanvas-project" class="project-detail">
+         <div class="canvas-wrapper">
+  <div class="sphere-shadow"></div> <!-- ← shadow layer -->
+  <canvas id="mainCanvas" width="500" height="500"></canvas>
+</div>
+    <div id="mainTags" style="display: none;">
+       <li><a href="https://www.ibm.com/think/topics/logistic-regression" target="_blank" rel="noopener noreferrer">Logistic Regression</a></li> 	<li><a href="https://www.ibm.com/think/topics/gradient-descent" target="_blank" rel="noopener noreferrer">Gradient Descent </a></li> 	<li><a href="https://www.ibm.com/think/topics/linear-regression" target="_blank" rel="noopener noreferrer">Linear regression</a></li> 	<li><a href="https://https://www.ibm.com/think/topics/gradient-boosting" target="_blank" rel="noopener noreferrer">Gradient Boosting</a></li> 	<li><a href="https://www.ibm.com/think/topics/random-forest" target="_blank" rel="noopener noreferrer">Random Forest</a></li>
+ 	<li><a href="https://www.ibm.com/think/topics/decision-trees" target="_blank" rel="noopener noreferrer">Decision trees</a></li>
+ 	<li><a href="https://www.ibm.com/think/topics/k-means-clustering" target="_blank" rel="noopener noreferrer">K-means Clustering </a></li> 	<li><a href="https://www.ibm.com/think/topics/knn" target="_blank" rel="noopener noreferrer">K-nearest neighbour </a></li>
+ 	<li><a href="https://www.ibm.com/think/topics/naive-bayes" target="_blank" rel="noopener noreferrer"> Naive Bayes </a></li> 	<li><a href="https://www.ibm.com/think/topics/reasoning-model" target="_blank" rel="noopener noreferrer">Reasoning model</a></li>
+          <li><a href="https://www.ibm.com/think/topics/time-series-model" target="_blank" rel="noopener noreferrer"> Time series model </a></li> 	<li><a href="https://www.ibm.com/think/topics/classification-models" target="_blank" rel="noopener noreferrer"> Classification models </a></li> 	<li><a href="https://www.ibm.com/think/topics/clustering" target="_blank" rel="noopener noreferrer"> Clustering </a></li>
+      <ul>
+                 
+      </ul>
+    </div>
+    
+     <!-- Sub Sphere -->
+  <div class="sub-sphere">
+      <canvas id="sub1" width="200" height="200"></canvas>
+        
+      </div>
+      <div id="tagsSub1" style="display: none;">
+        <ul>
+       
+          <li><a href="https://www.ibm.com/think/topics/generative-adversarial-networks" target="_blank" rel="noopener noreferrer"> GANS </a></li> 	<li><a href="https://www.ibm.com/think/topics/bias-variance-tradeoff" target="_blank" rel="noopener noreferrer"> Bias-variance tradeoff </a></li> 	<li><a href="https://www.ibm.com/think/topics/large-language-models-list" target="_blank" rel="noopener noreferrer"> LLMS </a></li> 	<li><a href="https://www.ibm.com/think/topics/natural-language-generation" target="_blank" rel="noopener noreferrer"> NLG </a></li> 	<li><a href="https://www.ibm.com/think/topics/agentic-ai-vs-generative-ai" target="_blank" rel="noopener noreferrer"> Agentic AI </a></li> 	<li><a href="https://www.ibm.com/think/topics/latent-space" target="_blank" rel="noopener noreferrer"> latent space </a></li>
+        </ul>
+      
+    </div>
+
+    <!-- more sub-spheres as needed -->
+  </div>
+</div>
+  <script src="https://www.goat1000.com/tagcanvas.min.js"></script>
+<script>   
+ 
+  
+   window.onload = function () {
+  try {
+    TagCanvas.Start('mainCanvas', 'mainTags', {
+      textColour: '#D3FE3E',
+      outlineColour: '#D3FE3E',
+      reverse: true,
+      depth: 0.8,
+      weight: false
+    });
+  } catch (e) {
+    console.log('Main sphere error:', e);
+  }
+
+  try {
+    TagCanvas.Start('sub1', 'tagsSub1', {
+      textColour: '#FFB700',
+      outlineColour: '#FFB700',
+      outline: 0.5,
+      reverse: true,
+      depth: 0.8,
+      weight: false
+    });
+  } catch (e) {
+    console.log('Sub sphere error:', e);
+  }
+};
+  </script>
+
+
+
+
+     
 
         <div class="projects-list">
           <div class="project-item" onclick="scrollToProject('experiment1')">
