@@ -427,7 +427,7 @@
 /* Sub-sphere canvas wrapper */
 #tagcanvas-project .sub-sphere {
    
-  z-index: 3;
+  z-index: 2;
   width: 200px;
   height: 200px;
   transition: opacity 0.5s ease;
@@ -1113,26 +1113,30 @@
           
    <!-- 🌀 TagCanvas Project Section -->
   <div id="tagcanvas-project" class="project-detail">
+    <div id="myCanvasContainer">
          <div class="canvas-wrapper">
   <div class="sphere-shadow"></div> <!-- ← shadow layer -->
   <canvas id="mainCanvas" width="500" height="500"></canvas>
-</div>
+  
+   <!-- Sub Sphere -->
+ <div class="sub-sphere" style="position: absolute; top: 20%; left: 20%; width: 200px; height: 200px;">
+      <canvas id="sub1" width="200" height="200"></canvas>
+        
+      </div>
+     </div>      
+   </div>
     <div id="mainTags" style="display: none;">
-       <li><a href="https://www.ibm.com/think/topics/logistic-regression" target="_blank" rel="noopener noreferrer">Logistic Regression</a></li> 	<li><a href="https://www.ibm.com/think/topics/gradient-descent" target="_blank" rel="noopener noreferrer">Gradient Descent </a></li> 	<li><a href="https://www.ibm.com/think/topics/linear-regression" target="_blank" rel="noopener noreferrer">Linear regression</a></li> 	<li><a href="https://https://www.ibm.com/think/topics/gradient-boosting" target="_blank" rel="noopener noreferrer">Gradient Boosting</a></li> 	<li><a href="https://www.ibm.com/think/topics/random-forest" target="_blank" rel="noopener noreferrer">Random Forest</a></li>
+       <ul><li><a href="https://www.ibm.com/think/topics/logistic-regression" target="_blank" rel="noopener noreferrer">Logistic Regression</a></li> 	<li><a href="https://www.ibm.com/think/topics/gradient-descent" target="_blank" rel="noopener noreferrer">Gradient Descent </a></li> 	<li><a href="https://www.ibm.com/think/topics/linear-regression" target="_blank" rel="noopener noreferrer">Linear regression</a></li> 	<li><a href="https://https://www.ibm.com/think/topics/gradient-boosting" target="_blank" rel="noopener noreferrer">Gradient Boosting</a></li> 	<li><a href="https://www.ibm.com/think/topics/random-forest" target="_blank" rel="noopener noreferrer">Random Forest</a></li>
  	<li><a href="https://www.ibm.com/think/topics/decision-trees" target="_blank" rel="noopener noreferrer">Decision trees</a></li>
  	<li><a href="https://www.ibm.com/think/topics/k-means-clustering" target="_blank" rel="noopener noreferrer">K-means Clustering </a></li> 	<li><a href="https://www.ibm.com/think/topics/knn" target="_blank" rel="noopener noreferrer">K-nearest neighbour </a></li>
  	<li><a href="https://www.ibm.com/think/topics/naive-bayes" target="_blank" rel="noopener noreferrer"> Naive Bayes </a></li> 	<li><a href="https://www.ibm.com/think/topics/reasoning-model" target="_blank" rel="noopener noreferrer">Reasoning model</a></li>
           <li><a href="https://www.ibm.com/think/topics/time-series-model" target="_blank" rel="noopener noreferrer"> Time series model </a></li> 	<li><a href="https://www.ibm.com/think/topics/classification-models" target="_blank" rel="noopener noreferrer"> Classification models </a></li> 	<li><a href="https://www.ibm.com/think/topics/clustering" target="_blank" rel="noopener noreferrer"> Clustering </a></li>
       <ul>
                  
-      </ul>
+       
     </div>
     
-     <!-- Sub Sphere -->
- <div class="sub-sphere" style="position: absolute; top: 10%; left: 10%; width: 200px; height: 200px;">
-      <canvas id="sub1" width="200" height="200"></canvas>
-        
-      </div>
+    
       <div id="tagsSub1" style="display: none;">
         <ul>
        
@@ -1142,7 +1146,7 @@
     </div>
 
     <!-- more sub-spheres as needed -->
-  </div>
+   
 </div>
   <script src="https://www.goat1000.com/tagcanvas.min.js"></script>
 <script>   
@@ -1156,6 +1160,8 @@
       reverse: true,
       depth: 0.8,
       weight: false
+      bgColour: null, // this disables canvas background
+       bgRadius: 0     // disables internal TagCanvas glow
     });
   } catch (e) {
     console.log('Main sphere error:', e);
