@@ -370,6 +370,10 @@
   position: relative;
   width: 600px;
   height: 600px;
+   /* Hide edges by masking with a circle */
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent; /* or match your page background */
 }
 
 #tagcanvas-project .canvas-wrapper {
@@ -377,6 +381,10 @@
   width: 500px;
   height: 500px;
   z-index: 2;
+   /* Hide edges by masking with a circle */
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent; /* or match your page background */
 }
 
 /* Main canvas */
@@ -1126,7 +1134,7 @@
     </div>
     
      <!-- Sub Sphere -->
-  <div class="sub-sphere">
+ <div class="sub-sphere" style="position: absolute; top: 10%; left: 10%; width: 200px; height: 200px;">
       <canvas id="sub1" width="200" height="200"></canvas>
         
       </div>
