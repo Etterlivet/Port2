@@ -380,7 +380,7 @@ body.tagcanvas-ready #tagcanvas-project {
 
 #tagcanvas-project .canvas-wrapper {
   overflow: hidden;      /* hides shadow edges */
-  border-radius: 50%;    /* makes it circular */
+   
   background: transparent;
 }
 
@@ -440,11 +440,17 @@ body.tagcanvas-ready #tagcanvas-project {
    
 }
 
-#tagcanvas-project #sub1 {
+#mainCanvas, #sub1 {
+ display: block; /* remove inline-block gaps */
   width: 200px;
   height: 200px;
   z-index: 3;
+  margin: 0;
+  padding: 0;
   position: relative;
+  border: none;
+  background-color: transparent;
+  will-change: transform; /* hint for smoother GPU rendering */
 }
 
 /* You can toggle visibility with JS by toggling this class */
@@ -1151,23 +1157,18 @@ body.tagcanvas-ready #tagcanvas-project {
  <script src="https://www.goat1000.com/tagcanvas.min.js"></script>
 <script>
 window.onload = function () {
-  //  Hide TagCanvas container to avoid flicker during initial load
+  var mainTags = document.getElementById('mainTags');
+  var tagsSub1 = document.getElementById('tagsSub1');
   var projectEl = document.getElementById('tagcanvas-project');
-  if (projectEl) {
-    projectEl.style.visibility = 'hidden';
-  }
 
-  //Hide tag lists before starting (prevents "tags in a line" flash)
-  var lists = ['mainTags', 'tagsSub1'];
-  lists.forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
+  // Hide tag lists to avoid flash of unstyled tags
+  if(mainTags) mainTags.style.display = 'none';
+  if(tagsSub1) tagsSub1.style.display = 'none';
 
-  var mainSphereOK = false;
-  var subSphereOK = false;
+  // Show container immediately (no blank screen)
+  if(projectEl) projectEl.style.visibility = 'visible';
 
-  // 3 Start main sphere
+  // Start main canvas
   try {
     TagCanvas.Start('mainCanvas', 'mainTags', {
       textColour: '#D3FE3E',
@@ -1176,12 +1177,12 @@ window.onload = function () {
       depth: 0.8,
       weight: false
     });
-    mainSphereOK = true;
+    if(mainTags) mainTags.style.display = 'block'; // Show tag list only after init
   } catch (e) {
     console.log('Main sphere error:', e);
   }
 
-  // Start sub sphere
+  // Start sub canvas
   try {
     TagCanvas.Start('sub1', 'tagsSub1', {
       textColour: '#FFB700',
@@ -1191,16 +1192,12 @@ window.onload = function () {
       depth: 0.8,
       weight: false
     });
-    subSphereOK = true;
+    if(tagsSub1) tagsSub1.style.display = 'block'; // Show tag list only after init
   } catch (e) {
     console.log('Sub sphere error:', e);
   }
-
-  //  Show the container only when both spheres are ready
-  if (mainSphereOK && subSphereOK && projectEl) {
-    projectEl.style.visibility = 'visible';
-  }
 };
+
 </script>
 
 
