@@ -363,7 +363,11 @@
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  visibility: hidden; /* hide entire thing at start */
 }
+body.tagcanvas-ready #tagcanvas-project {
+  visibility: visible;
+}    
 
 /* Container for all spheres */
 #tagcanvas-project #myCanvasContainer {
@@ -1144,11 +1148,26 @@
     <!-- more sub-spheres as needed -->
    
 </div>
-  <script src="https://www.goat1000.com/tagcanvas.min.js"></script>
-<script>   
- 
-  
-   window.onload = function () {
+ <script src="https://www.goat1000.com/tagcanvas.min.js"></script>
+<script>
+window.onload = function () {
+  //  Hide TagCanvas container to avoid flicker during initial load
+  var projectEl = document.getElementById('tagcanvas-project');
+  if (projectEl) {
+    projectEl.style.visibility = 'hidden';
+  }
+
+  //Hide tag lists before starting (prevents "tags in a line" flash)
+  var lists = ['mainTags', 'tagsSub1'];
+  lists.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  var mainSphereOK = false;
+  var subSphereOK = false;
+
+  // 3 Start main sphere
   try {
     TagCanvas.Start('mainCanvas', 'mainTags', {
       textColour: '#D3FE3E',
@@ -1156,13 +1175,13 @@
       reverse: true,
       depth: 0.8,
       weight: false
-       
-       
     });
+    mainSphereOK = true;
   } catch (e) {
     console.log('Main sphere error:', e);
   }
 
+  // Start sub sphere
   try {
     TagCanvas.Start('sub1', 'tagsSub1', {
       textColour: '#FFB700',
@@ -1172,11 +1191,17 @@
       depth: 0.8,
       weight: false
     });
+    subSphereOK = true;
   } catch (e) {
     console.log('Sub sphere error:', e);
   }
+
+  //  Show the container only when both spheres are ready
+  if (mainSphereOK && subSphereOK && projectEl) {
+    projectEl.style.visibility = 'visible';
+  }
 };
-  </script>
+</script>
 
 
 
